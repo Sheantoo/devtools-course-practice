@@ -24,16 +24,17 @@ TEST(Asoskov_Mikhail_ArrayPermutationTest, Can_find_permutation) {
 TEST(Asoskov_Mikhail_ArrayPermutationTest,
             Can_find_permutation_with_random_array) {
     // Arrange
-    int size = 3;
-    std::vector<int> numbers = ArrayPermutaionGenerator::randArray(5);
+    int size = 5;
+    std::vector<int> numbers = ArrayPermutaionGenerator::randArray(size);
     std::vector<std::vector<int>> result;
     ArrayPermutaionGenerator::Generator(&numbers, 0, &result);
 
     // Act
     const int countPermutation = 120;
+    const int expectSize = result.size();
 
     // Assert
-    ASSERT_EQ(result.size(), countPermutation);
+    ASSERT_EQ(expectSize, countPermutation);
 }
 
 TEST(Asoskov_Mikhail_ArrayPermutationTest,
