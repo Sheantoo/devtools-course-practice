@@ -5,7 +5,7 @@
 void ArrayPermutaionGenerator::Generator(std::vector<int>* numbers,
                                 int start,
                                 std::vector<std::vector<int>>* result) {
-    const size_t countNumbers = numbers->size();
+    int countNumbers = numbers->size();
 
 
     if (start == countNumbers - 1) {
