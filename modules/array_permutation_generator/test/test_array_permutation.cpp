@@ -1,7 +1,7 @@
 // Copyright 2023 Asoskov Mikhail
 
 #include <gtest/gtest.h>
-#include "../include/array_permutation.h"
+#include "include/array_permutation.h"
 
 TEST(Asoskov_Mikhail_ArrayPermutationTest, Can_find_permutation) {
     // Arrange
