@@ -3,15 +3,6 @@
 #include <gtest/gtest.h>
 #include "include/array_permutation.h"
 
-std::vector<int> randArray(int size) {
-    std::vector<int> array(size);
-    std::random_device random_device;
-    std::mt19937 generation(random_device());
-    for (int i = 0; i < size; i++)
-        array[i] = static_cast<int>(generation() % 10);
-    return array;
-}
-
 TEST(Asoskov_Mikhail_ArrayPermutationTest, Can_find_permutation) {
     // Arrange
     std::vector<int> numbers = {1, 2, 3};
@@ -31,16 +22,15 @@ TEST(Asoskov_Mikhail_ArrayPermutationTest, Can_find_permutation) {
 }
 
 TEST(Asoskov_Mikhail_ArrayPermutationTest,
-            Can_find_permutation_with_random_array) {
+            Can_find_permutation_with_large_array) {
     // Arrange
-    int size = 5;
-    std::vector<int> numbers = randArray(size);
+    std::vector<int> numbers = {1, 2, 3, 4, 5};
     std::vector<std::vector<int>> result;
     ArrayPermutaionGenerator::Generator(numbers, 0, &result);
 
     // Act
-    const int countPermutation = 120;
-    const int expectSize = result.size();
+    const int countPermutation = result.size();
+    const int expectSize = 120;
 
     // Assert
     ASSERT_EQ(expectSize, countPermutation);
