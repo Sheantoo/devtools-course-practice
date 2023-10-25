@@ -8,7 +8,7 @@ void BilinearInterpolationApp::help() {
     .append("row1: <1 element> <2 element> ... <n element> </n>\n")
     .append("row2: <1 element> <2 element> ... <n element> </n>\n")
     .append("row3: <1 element> <2 element> ... <n element> </n> ...\n")
-    .append("rown: <1 element> <2 element> ... <n element> </n>\n")
+    .append("rown: <1 element> <2 element> ... <n element> </n> <factor>\n")
     .append("All elements must be integer!");
 }
 
@@ -41,7 +41,7 @@ std::string BilinearInterpolationApp::operator()
     std::vector<std::vector<int>> image;
 
     std::vector<int> current;
-    for (int i = 1; i < argc; i++) {
+    for (int i = 1; i < argc - 1; i++) {
         std::string element = argv[i];
         if (element == "/n") {
             image.push_back(current);
@@ -51,8 +51,10 @@ std::string BilinearInterpolationApp::operator()
         }
     }
 
+    int factor = std::atoi(argv[argc - 1]);
+
     BilinearInterpolator bi;
-    bi.bilinearInterpolation(&image, 2);
+    bi.bilinearInterpolation(&image, factor);
 
     std::vector<int> res = ToOneDimensionalVector(image);
 
