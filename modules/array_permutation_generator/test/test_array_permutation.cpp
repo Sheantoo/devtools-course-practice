@@ -3,11 +3,20 @@
 #include <gtest/gtest.h>
 #include "include/array_permutation.h"
 
+std::vector<int> randArray(int size) {
+    std::vector<int> array(size);
+    std::random_device random_device;
+    std::mt19937 generation(random_device());
+    for (int i = 0; i < size; i++)
+        array[i] = static_cast<int>(generation() % 10);
+    return array;
+}
+
 TEST(Asoskov_Mikhail_ArrayPermutationTest, Can_find_permutation) {
     // Arrange
     std::vector<int> numbers = {1, 2, 3};
     std::vector<std::vector<int>> result;
-    ArrayPermutaionGenerator::Generator(&numbers, 0, &result);
+    ArrayPermutaionGenerator::Generator(numbers, 0, &result);
 
     // Act
     std::vector<std::vector<int>> expectResult = { {1, 2, 3},
@@ -25,9 +34,9 @@ TEST(Asoskov_Mikhail_ArrayPermutationTest,
             Can_find_permutation_with_random_array) {
     // Arrange
     int size = 5;
-    std::vector<int> numbers = ArrayPermutaionGenerator::randArray(size);
+    std::vector<int> numbers = randArray(size);
     std::vector<std::vector<int>> result;
-    ArrayPermutaionGenerator::Generator(&numbers, 0, &result);
+    ArrayPermutaionGenerator::Generator(numbers, 0, &result);
 
     // Act
     const int countPermutation = 120;
@@ -42,7 +51,7 @@ TEST(Asoskov_Mikhail_ArrayPermutationTest,
     // Arrange
     std::vector<int> numbers = {-10, -20};
     std::vector<std::vector<int>> result;
-    ArrayPermutaionGenerator::Generator(&numbers, 0, &result);
+    ArrayPermutaionGenerator::Generator(numbers, 0, &result);
 
     // Act
     std::vector<std::vector<int>> expectResult = { {-10, -20}, {-20, -10} };
@@ -56,7 +65,7 @@ TEST(Asoskov_Mikhail_ArrayPermutationTest,
     // Arrange
     std::vector<int> numbers = {5};
     std::vector<std::vector<int>> result;
-    ArrayPermutaionGenerator::Generator(&numbers, 0, &result);
+    ArrayPermutaionGenerator::Generator(numbers, 0, &result);
 
     // Act
     std::vector<std::vector<int>> expectResult = { {5} };

@@ -2,29 +2,21 @@
 
 #include "include/array_permutation.h"
 
-void ArrayPermutaionGenerator::Generator(std::vector<int>* numbers,
+void ArrayPermutaionGenerator::Generator(const std::vector<int>& numbers,
                                 int start,
                                 std::vector<std::vector<int>>* result) {
-    int countNumbers = numbers->size();
+    int countNumbers = numbers.size();
 
+    std::vector<int> localNumbers = numbers;
 
     if (start == countNumbers - 1) {
-        result->push_back(*numbers);
+        result->push_back(localNumbers);
         return;
     }
 
     for (int i = start; i < countNumbers; i++) {
-        std::swap(numbers->at(start), numbers->at(i));
-        Generator(numbers, start + 1, result);
-        std::swap(numbers->at(start), numbers->at(i));
+        std::swap(localNumbers[start], localNumbers[i]);
+        Generator(localNumbers, start + 1, result);
+        std::swap(localNumbers[start], localNumbers[i]);
     }
-}
-
-std::vector<int> ArrayPermutaionGenerator::randArray(int size) {
-    std::vector<int> array(size);
-    std::random_device random_device;
-    std::mt19937 generation(random_device());
-    for (int i = 0; i < size; i++)
-        array[i] = static_cast<int>(generation() % 10);
-    return array;
 }

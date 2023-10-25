@@ -8,12 +8,9 @@
 
 namespace ArrayPermutaionGenerator {
 
-    void Generator(std::vector<int>* numbers,
+    void Generator(const std::vector<int>& numbers,
                     int start,
                     std::vector<std::vector<int>>* result);
-
-    std::vector<int> randArray(int size);
-
 }
 
 #endif  // MODULES_ARRAY_PERMUTATION_GENERATOR_INCLUDE_ARRAY_PERMUTATION_H_
