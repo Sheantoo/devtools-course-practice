@@ -31,6 +31,13 @@ std::string VectorToString(std::vector<int> vector) {
     return result;
 }
 
+bool isDigit(std::string element) {
+    for (const auto& ch : element) {
+        if (!std::isdigit(ch)) return false;
+    }
+    return true;
+}
+
 std::string BilinearInterpolationApp::operator()
                         (int argc, const char** argv) {
     if (argc <= 1) {
@@ -43,6 +50,12 @@ std::string BilinearInterpolationApp::operator()
     std::vector<int> current;
     for (int i = 1; i < argc - 1; i++) {
         std::string element = argv[i];
+
+        if (!isDigit(element) && element != "/n") {
+            message = "Not a number!";
+            return message;
+        }
+
         if (element == "/n") {
             image.push_back(current);
             current.clear();
